@@ -2,7 +2,7 @@
 type valorNS = number | string;
 
 
-function somarValores(input1: valorNS, input2: valorNS) {
+function somarValores(input1: valorNS, input2: valorNS): number|string {
     if (typeof input1 === 'string' || typeof input2 === 'string'){
         return input1.toString() + input2.toString();
     } else {
