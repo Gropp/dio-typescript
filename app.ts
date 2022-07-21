@@ -1,72 +1,22 @@
-const pessoa = {
-    nome: 'Mariana',
-    idade: 28,
-    profissao: 'Desenvolvedora'
+let valorAny: any;
+
+valorAny = 1;
+valorAny = "ola";
+valorAny = true;
+
+let valorString: string = 'teste';
+
+//apesar do typescript ser autamente tipado, ele permite que voce atribua a uma variavel declarada como string uma variavel do tipo any, pois o any pode ser em algum momento uma string. Isto pode gerar muitos problemas.
+//esse tipo de uso acaba com o que o typescript tem de melhor, que é a validacao dos tipos
+//NAO FAZER ISSO
+valorString = valorAny;
+
+let valorString2:string = 'teste2';
+valorString2 = valorAny;
+
+function somarString(string1: string, string2: string) {
+    console.log(string1+string2);
 }
 
-pessoa.idade = 25;
-
-const andre: {nome: string, idade: number, profissao: string} = {
-    nome: 'Andre',
-    idade: 25,
-    profissao: 'pintor'
-}
-
-const paula: {nome: string, idade: number, profissao: string} = {
-    nome: 'Paula',
-    idade: 25,
-    profissao: 'Desenvolvedora'
-}
-
-//grupo de constantes para padronizar alguns valores
-enum Profissao {
-    Professora,
-    Atriz,
-    Desenvolvedora,
-    JogadoraDeFutebol
-}
-
-interface Pessoa {
-    nome: string,
-    idade: number,
-    //torna a propriedade não obrigatoria
-    profissao?: Profissao
-}
-
-interface Estudante extends Pessoa {
-    materias: string[]
-}
-
-const vanessa: Pessoa = {
-    nome: 'Vanessa',
-    idade: 30,
-    profissao: Profissao.Desenvolvedora
-}
-
-const maria: Pessoa = {
-    nome: 'Maria',
-    idade: 20,
-    profissao: Profissao.Desenvolvedora
-}
-
-const jessica: Estudante = {
-    nome: 'Jéssica',
-    idade: 20,
-    profissao: Profissao.Desenvolvedora,
-    materias: ['Matemática discreta', 'Programação']
-}
-
-//como profissao nao é obrigatoria o compilador na reclamaou de nao ter profissao
-const monica: Estudante = {
-    nome: 'Mônica',
-    idade: 21,
-    materias: ['Matemática discreta', 'Programação']
-}
-
-function listar(lista: string[]){
-    for(const item of lista){
-        console.log('- ', item);
-    }
-}
-
-listar(monica.materias);
+//a função ira retornar um valor imprevisivel... pois nao sabemos o que esta guardado em valorAny..
+somarString(valorString, valorString2);

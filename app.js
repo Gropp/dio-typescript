@@ -1,53 +1,17 @@
 "use strict";
-const pessoa = {
-    nome: 'Mariana',
-    idade: 28,
-    profissao: 'Desenvolvedora'
-};
-pessoa.idade = 25;
-const andre = {
-    nome: 'Andre',
-    idade: 25,
-    profissao: 'pintor'
-};
-const paula = {
-    nome: 'Paula',
-    idade: 25,
-    profissao: 'Desenvolvedora'
-};
-//grupo de constantes para padronizar alguns valores
-var Profissao;
-(function (Profissao) {
-    Profissao[Profissao["Professora"] = 0] = "Professora";
-    Profissao[Profissao["Atriz"] = 1] = "Atriz";
-    Profissao[Profissao["Desenvolvedora"] = 2] = "Desenvolvedora";
-    Profissao[Profissao["JogadoraDeFutebol"] = 3] = "JogadoraDeFutebol";
-})(Profissao || (Profissao = {}));
-const vanessa = {
-    nome: 'Vanessa',
-    idade: 30,
-    profissao: Profissao.Desenvolvedora
-};
-const maria = {
-    nome: 'Maria',
-    idade: 20,
-    profissao: Profissao.Desenvolvedora
-};
-const jessica = {
-    nome: 'Jéssica',
-    idade: 20,
-    profissao: Profissao.Desenvolvedora,
-    materias: ['Matemática discreta', 'Programação']
-};
-//como profissao nao é obrigatoria o compilador na reclamaou de nao ter profissao
-const monica = {
-    nome: 'Mônica',
-    idade: 21,
-    materias: ['Matemática discreta', 'Programação']
-};
-function listar(lista) {
-    for (const item of lista) {
-        console.log('- ', item);
-    }
+let valorAny;
+valorAny = 1;
+valorAny = "ola";
+valorAny = true;
+let valorString = 'teste';
+//apesar do typescript ser autamente tipado, ele permite que voce atribua a uma variavel declarada como string uma variavel do tipo any, pois o any pode ser em algum momento uma string. Isto pode gerar muitos problemas.
+//esse tipo de uso acaba com o que o typescript tem de melhor, que é a validacao dos tipos
+//NAO FAZER ISSO
+valorString = valorAny;
+let valorString2 = 'teste2';
+valorString2 = valorAny;
+function somarString(string1, string2) {
+    console.log(string1 + string2);
 }
-listar(monica.materias);
+//a função ira retornar um valor imprevisivel... pois nao sabemos o que esta guardado em valorAny..
+somarString(valorString, valorString2);
