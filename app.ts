@@ -1,24 +1,72 @@
-let button = document.getElementById('button');
-// garante que os inputes sao Elementos HTML e não nulos
-let input1 = document.getElementById('input1') as HTMLInputElement;
-let input2 = document.getElementById('input2') as HTMLInputElement;
-
-function adicionarNumero(numero1: number, numero2: number, devPrintar: boolean, frase:string) {
-    let resultado = numero1 + numero2
-    if (devPrintar) {
-        console.log(frase + resultado)
-    }
-    return numero1 + numero2
+const pessoa = {
+    nome: 'Mariana',
+    idade: 28,
+    profissao: 'Desenvolvedora'
 }
 
-let devPrintar = true;
-let frase = 'O valor é: ';
+pessoa.idade = 25;
 
-if(button) {
-    button.addEventListener('click', () => {
-    if(input1 && input2) {
-        console.log(adicionarNumero(Number(input1.value), Number(input2.value), devPrintar, frase))
+const andre: {nome: string, idade: number, profissao: string} = {
+    nome: 'Andre',
+    idade: 25,
+    profissao: 'pintor'
+}
+
+const paula: {nome: string, idade: number, profissao: string} = {
+    nome: 'Paula',
+    idade: 25,
+    profissao: 'Desenvolvedora'
+}
+
+//grupo de constantes para padronizar alguns valores
+enum Profissao {
+    Professora,
+    Atriz,
+    Desenvolvedora,
+    JogadoraDeFutebol
+}
+
+interface Pessoa {
+    nome: string,
+    idade: number,
+    //torna a propriedade não obrigatoria
+    profissao?: Profissao
+}
+
+interface Estudante extends Pessoa {
+    materias: string[]
+}
+
+const vanessa: Pessoa = {
+    nome: 'Vanessa',
+    idade: 30,
+    profissao: Profissao.Desenvolvedora
+}
+
+const maria: Pessoa = {
+    nome: 'Maria',
+    idade: 20,
+    profissao: Profissao.Desenvolvedora
+}
+
+const jessica: Estudante = {
+    nome: 'Jéssica',
+    idade: 20,
+    profissao: Profissao.Desenvolvedora,
+    materias: ['Matemática discreta', 'Programação']
+}
+
+//como profissao nao é obrigatoria o compilador na reclamaou de nao ter profissao
+const monica: Estudante = {
+    nome: 'Mônica',
+    idade: 21,
+    materias: ['Matemática discreta', 'Programação']
+}
+
+function listar(lista: string[]){
+    for(const item of lista){
+        console.log('- ', item);
     }
- }
-)}
+}
 
+listar(monica.materias);
