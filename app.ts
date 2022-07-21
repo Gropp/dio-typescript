@@ -1,22 +1,15 @@
-let valorAny: any;
+// criando um tipo misto
+type valorNS = number | string;
 
-valorAny = 1;
-valorAny = "ola";
-valorAny = true;
 
-let valorString: string = 'teste';
-
-//apesar do typescript ser autamente tipado, ele permite que voce atribua a uma variavel declarada como string uma variavel do tipo any, pois o any pode ser em algum momento uma string. Isto pode gerar muitos problemas.
-//esse tipo de uso acaba com o que o typescript tem de melhor, que é a validacao dos tipos
-//NAO FAZER ISSO
-valorString = valorAny;
-
-let valorString2:string = 'teste2';
-valorString2 = valorAny;
-
-function somarString(string1: string, string2: string) {
-    console.log(string1+string2);
+function somarValores(input1: valorNS, input2: valorNS) {
+    if (typeof input1 === 'string' || typeof input2 === 'string'){
+        return input1.toString() + input2.toString();
+    } else {
+        return input1 + input2
+    }    
 }
 
-//a função ira retornar um valor imprevisivel... pois nao sabemos o que esta guardado em valorAny..
-somarString(valorString, valorString2);
+console.log(somarValores(1, 5));
+console.log(somarValores('ola ', 'como vai?'));
+console.log(somarValores('1', 5));
